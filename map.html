@@ -15,7 +15,71 @@
 
 
     <title>Leaflet</title>
-    <style>#map { height: 500px ;width: 400px;margin: auto;}</style>
+    <style>
+    
+    #map { height: 1000px ;width: 1000px;margin: auto;}
+    
+    body {
+  font-family: 'Open Sans', sans-serif;
+}
+.title-holder {
+  text-align: center;
+}
+.title {
+  font-family: 'Lato', sans-serif;
+}
+.subtitle {
+  font-size: 20px;
+}
+.font {
+  font-size: 18px;
+}
+
+/* legend */
+.legend {
+  font-size: 10px;
+}
+rect {
+  cursor: pointer; 
+  stroke-width: 2;
+}
+rect.disabled {
+  fill: transparent !important;
+}
+
+/* chart */
+.chart {
+  height: 100px;
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  width: 300px;
+}
+
+/* tooltip */
+.tooltip {
+  background: #eee;
+  box-shadow: 0 0 5px #999999;
+  color: #333;
+  display: none;
+  font-size: 8px;
+  left: 130px;
+  padding: 10px;
+  position: re;
+  text-align: center;
+  top: 95px;
+  width: 20px;
+  z-index: 10;
+}
+
+.footer {
+  padding-top: 50px;
+  text-align: center;
+  list-style-type: none;
+}
+}
+    
+    </style>
 </head>
 <body>
 <div id="map"></div>
@@ -36,68 +100,163 @@
         var feature = d.feature;
         var attributes = feature.properties;
 
-        var data = {"White": attributes["White_alon"],"Black": attributes["Black_alon"],"Asian": attributes["Asian_alon"], "Two or More Races": attributes["TwoOrMore"],"Some Other Race": attributes["SomeOtherR"], "Native American or Alaska Native": attributes["Indian_Ala"], "Native Hawaiian or Other Pacific Islander": attributes["HawaiiPaci"]};
-
-        // set the dimensions and margins of the graph
-        var width = 100
-            height = 100
-            margin = 10
-
-        // The radius of the pieplot is half the width or half the height (smallest one). I subtract a bit of margin.
-        var radius = Math.min(width, height) / 2 - margin
-
-
-        var div = d3.create("div");
-
-        var svg = div.append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .append("g")
-        .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
-                // set the color scale
-        var color = d3.scaleOrdinal()
-        .domain(data)
-        .range(d3.schemeSet2);
-
-        // Compute the position of each group on the pie:
-        var pie = d3.pie()
-        .value(function(d) {return d.value; })
-        var data_ready = pie(d3.entries(data))
-        // Now I know that group A goes from 0 degrees to x degrees and so on.
-
-        // shape helper to build arcs:
-        var arcGenerator = d3.arc()
-        .innerRadius(0)
-        .outerRadius(radius)
-
-        // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
-        svg
-        .selectAll('mySlices')
-        .data(data_ready)
-        .enter()
-        .append('path')
-            .attr('d', arcGenerator)
-            .attr('fill', function(d){ return(color(d.data.key)) })
-            .attr("stroke", "black")
-            .style("stroke-width", "2px")
-            .style("opacity", 0.7)
-
-        // Now add the annotation. Use the centroid method to get the best coordinates
-        svg
-        .selectAll('mySlices')
-        .data(data_ready)
-        .enter()
-        .append('text')
-        .text(function(d){ return "grp " + d.data.key})
-        .attr("transform", function(d) { return "translate(" + arcGenerator.centroid(d) + ")";  })
-        .style("text-anchor", "middle")
-        .style("font-size", 17)
-
-                                
+        var dataset = [{label:"White", count: attributes["White_alon"]},{label:"Black",count: attributes["Black_alon"]},{label:"Asian", count: attributes["Asian_alon"]},{label: "Two or More Races", count: attributes["TwoOrMore"]},{label: "Some Other Race", count: attributes["SomeOtherR"]},{label: "Native American or Alaska Native", count: attributes["Indian_Ala"]},{label: "Native Hawaiian or Other Pacific Islander", count: attributes["HawaiiPaci"]}];
 
 
 
+        var div = d3.create("div").attr('class','chart');
+
+
+       // chart dimensions
+var width = 300;
+var height = 100;
+
+// a circle chart needs a radius
+var radius = Math.min(width, height) / 2;
+
+// legend dimensions
+var legendRectSize = 4; // defines the size of the colored squares in legend
+var legendSpacing = 4; // defines spacing between squares
+
+// define color scale
+var color = d3.scaleOrdinal(d3.schemeCategory20b);
+// more color scales: https://bl.ocks.org/pstuffa/3393ff2711a53975040077b7453781a9
+
+var svg = div // select element in the DOM with id 'chart'
+  .append('svg') // append an svg element to the element we've selected
+  .attr('width', width) // set the width of the svg element we just added
+  .attr('height', height) // set the height of the svg element we just added
+  .append('g') // append 'g' element to the svg element
+  .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')'); // our reference is now to the 'g' element. centerting the 'g' element to the svg element
+
+var arc = d3.arc()
+  .innerRadius(0) // none for pie chart
+  .outerRadius(radius); // size of overall chart
+
+var pie = d3.pie() // start and end angles of the segments
+  .value(function(d) { return d.count; }) // how to extract the numerical data from each entry in our dataset
+  .sort(null); // by default, data sorts in oescending value. this will mess with our animation so we set it to null
+
+// define tooltip
+var tooltip = div // select element in the DOM with id 'chart'
+  .append('div') // append a div element to the element we've selected                                    
+  .attr('class', 'tooltip'); // add class 'tooltip' on the divs we just selected
+
+tooltip.append('div') // add divs to the tooltip defined above                            
+  .attr('class', 'label'); // add class 'label' on the selection                         
+
+tooltip.append('div') // add divs to the tooltip defined above                     
+  .attr('class', 'count'); // add class 'count' on the selection                  
+
+tooltip.append('div') // add divs to the tooltip defined above  
+  .attr('class', 'percent'); // add class 'percent' on the selection
+
+// Confused? see below:
+
+// <div id="chart">
+//   <div class="tooltip">
+//     <div class="label">
+//     </div>
+//     <div class="count">
+//     </div>
+//     <div class="percent">
+//     </div>
+//   </div>
+// </div>
+
+dataset.forEach(function(d) {
+  d.count = +d.count; // calculate count as we iterate through the data
+  d.enabled = true; // add enabled property to track which entries are checked
+});
+
+// creating the chart
+var path = svg.selectAll('path') // select all path elements inside the svg. specifically the 'g' element. they don't exist yet but they will be created below
+  .data(pie(dataset)) //associate dataset wit he path elements we're about to create. must pass through the pie function. it magically knows how to extract values and bakes it into the pie
+  .enter() //creates placeholder nodes for each of the values
+  .append('path') // replace placeholders with path elements
+  .attr('d', arc) // define d attribute with arc function above
+  .attr('fill', function(d) { return color(d.data.label); }) // use color scale to define fill of each label in dataset
+  .each(function(d) { this._current - d; }); // creates a smooth animation for each track
+
+// mouse event handlers are attached to path so they need to come after its definition
+path.on('mouseover', function(d) {  // when mouse enters div      
+ var total = d3.sum(dataset.map(function(d) { // calculate the total number of tickets in the dataset         
+  return (d.enabled) ? d.count : 0; // checking to see if the entry is enabled. if it isn't, we return 0 and cause other percentages to increase                                      
+  }));                                                      
+ var percent = Math.round(1000 * d.data.count / total) / 10; // calculate percent
+ tooltip.select('.label').html(d.data.label); // set current label           
+ tooltip.select('.count').html( d.data.count); // set current count            
+ tooltip.select('.percent').html(percent + '%'); // set percent calculated above          
+ tooltip.style('display', 'block'); // set display                     
+});                                                           
+
+path.on('mouseout', function() { // when mouse leaves div                        
+  tooltip.style('display', 'none'); // hide tooltip for that element
+ });
+
+path.on('mousemove', function(d) { // when mouse moves                  
+  tooltip.style('top', (d3.event.layerY + 10) + 'px') // always 10px below the cursor
+    .style('left', (d3.event.layerX + 10) + 'px'); // always 10px to the right of the mouse
+  });
+
+// define legend
+var legend = svg.selectAll('.legend') // selecting elements with class 'legend'
+  .data(color.domain()) // refers to an array of labels from our dataset
+  .enter() // creates placeholder
+  .append('g') // replace placeholders with g elements
+  .attr('class', 'legend') // each g is given a legend class
+  .attr('transform', function(d, i) {                   
+    var height = legendRectSize + legendSpacing; // height of element is the height of the colored square plus the spacing      
+    var offset =  height * color.domain().length / 2; // vertical offset of the entire legend = height of a single element & half the total number of elements  
+    var horz = 18 * legendRectSize; // the legend is shifted to the left to make room for the text
+    var vert = i * height - offset; // the top of the element is hifted up or down from the center using the offset defiend earlier and the index of the current element 'i'               
+      return 'translate(' + horz + ',' + vert + ')'; //return translation       
+   });
+
+// adding colored squares to legend
+legend.append('rect') // append rectangle squares to legend                                   
+  .attr('width', legendRectSize) // width of rect size is defined above                        
+  .attr('height', legendRectSize) // height of rect size is defined above                      
+  .style('fill', color) // each fill is passed a color
+  .style('stroke', color) // each stroke is passed a color
+  .on('click', function(label) {
+    var rect = d3.select(this); // this refers to the colored squared just clicked
+    var enabled = true; // set enabled true to default
+    var totalEnabled = d3.sum(dataset.map(function(d) { // can't disable all options
+      return (d.enabled) ? 1 : 0; // return 1 for each enabled entry. and summing it up
+    }));
+
+    if (rect.attr('class') === 'disabled') { // if class is disabled
+      rect.attr('class', ''); // remove class disabled
+    } else { // else
+      if (totalEnabled < 2) return; // if less than two labels are flagged, exit
+      rect.attr('class', 'disabled'); // otherwise flag the square disabled
+      enabled = false; // set enabled to false
+    }
+
+    pie.value(function(d) { 
+      if (d.label === label) d.enabled = enabled; // if entry label matches legend label
+        return (d.enabled) ? d.count : 0; // update enabled property and return count or 0 based on the entry's status
+    });
+
+    path = path.data(pie(dataset)); // update pie with new data
+
+    path.transition() // transition of redrawn pie
+      .duration(750) // 
+      .attrTween('d', function(d) { // 'd' specifies the d attribute that we'll be animating
+        var interpolate = d3.interpolate(this._current, d); // this = current path element
+        this._current = interpolate(0); // interpolate between current value and the new value of 'd'
+        return function(t) {
+          return arc(interpolate(t));
+        };
+      });
+  });
+
+// adding text to legend
+legend.append('text')                                    
+  .attr('x', legendRectSize + legendSpacing)
+  .attr('y', legendRectSize - legendSpacing)
+  .text(function(d) { return d; }); // return label
         return div.node();
 
     }
