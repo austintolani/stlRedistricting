@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+    <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
+</head>
+<style>
+
+#map1 { height: 500px ;width: 400px;margin: auto;}
+#map2 { height: 500px ;width: 400px;margin: auto;}
+#map3 { height: 500px ;width: 400px;margin: auto;}
+</style>
+<body>
+    <div id="map1"></div>
+    <div id="map2"></div>
+    <div id="map3"></div>
+
+    <script>
+        var map1 = L.map('map1').setView([38.633649, -90.243655], 11);
+        L.esri.basemapLayer("Gray").addTo(map1);
+
+        var map2 = L.map('map2').setView([38.633649, -90.243655], 11);
+        L.esri.basemapLayer("Gray").addTo(map2);
+
+        var map3 = L.map('map3').setView([38.633649, -90.243655], 11);
+        L.esri.basemapLayer("Gray").addTo(map3);
+
+        var wards1 = L.esri.featureLayer({
+        url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/Results/FeatureServer/2?token=55NDY2qN5ZFKu6vGFKQHarE01HhPj0Mk8xGT1KP-fnsfMis5y80tTDx6ZZKPouZPb_ouYVfupagcFGfKStXoSoQ4bwBp5_LNXEy8XWnXEj1ys5rE_kWO6hw1wW-17sTmRDsP8mbE_ZdrNSQ4Lv6fydhEu_eiDJ6vcKqC_Hpu-d2owvmP5lo14uFc4s7iocH1EKFufP_cEgZReubkrA09yijCDP13TRfInocx_AbryZahTAZa5RZgVzz3tBDTGkJz",
+        style: function () {
+            return { color: "#009999", weight: 2 };
+        }
+        }).addTo(map1);
+
+        var wards2 = L.esri.featureLayer({
+        url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/Results/FeatureServer/0?token=55NDY2qN5ZFKu6vGFKQHarE01HhPj0Mk8xGT1KP-fnsfMis5y80tTDx6ZZKPouZPb_ouYVfupagcFGfKStXoSoQ4bwBp5_LNXEy8XWnXEj1ys5rE_kWO6hw1wW-17sTmRDsP8mbE_ZdrNSQ4Lv6fydhEu_eiDJ6vcKqC_Hpu-d2owvmP5lo14uFc4s7iocH1EKFufP_cEgZReubkrA09yijCDP13TRfInocx_AbryZahTAZa5RZgVzz3tBDTGkJz",
+        style: function () {
+            return { color: "#009999", weight: 2 };
+        }
+        }).addTo(map2);
+
+        var wards3 = L.esri.featureLayer({
+        url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/Results/FeatureServer/1?token=55NDY2qN5ZFKu6vGFKQHarE01HhPj0Mk8xGT1KP-fnsfMis5y80tTDx6ZZKPouZPb_ouYVfupagcFGfKStXoSoQ4bwBp5_LNXEy8XWnXEj1ys5rE_kWO6hw1wW-17sTmRDsP8mbE_ZdrNSQ4Lv6fydhEu_eiDJ6vcKqC_Hpu-d2owvmP5lo14uFc4s7iocH1EKFufP_cEgZReubkrA09yijCDP13TRfInocx_AbryZahTAZa5RZgVzz3tBDTGkJz",
+        style: function () {
+            return { color: "#009999", weight: 2 };
+        }
+        }).addTo(map3);
+    
+        wards1.bindPopup(function (layer) {
+        return L.Util.template('    <p><strong>Ward #{DIST_ID}</strong></p><ul><li>Population is within threshold at {totalPop}</li><li>Voting age population is {votingPop}</li><li>Polspy-Popper (compactness) score is {ppScore}</li><li>African American population is {Black_alon}</li></ul>', layer.feature.properties);
+      });
+    
+      wards1.on('click', function(layer){
+      console.log(layer.layer.feature.properties)
+    })
+
+    wards2.bindPopup(function (layer) {
+        return L.Util.template('    <p><strong>Ward #{Run4_csv_A}</strong></p><ul><li>Population is within threshold at {totalPop}</li><li>Voting age population is {votingPop}</li><li>Polspy-Popper (compactness) score is {ppScore}</li><li>African American population is {Black_alon}</li></ul>', layer.feature.properties);
+      });
+    
+      wards2.on('click', function(layer){
+      console.log(layer.layer.feature.properties)
+    })
+
+    wards3.bindPopup(function (layer) {
+        return L.Util.template('    <p><strong>Ward #{DIST_ID}</strong></p><ul><li>Population is within threshold at {totalPop}</li><li>Voting age population is {votingPop}</li><li>Polspy-Popper (compactness) score is {ppScore}</li><li>African American population is {Black_alon}</li></ul>', layer.feature.properties);
+      });
+    
+      wards3.on('click', function(layer){
+      console.log(layer.layer.feature.properties)
+    })
+
+
+    var neighborhoods = L.esri.featureLayer({url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/0?token=ruNMwx0LbONs71B8yWA0cOPc9Ipn8DKOCFactZQjyI0jDlJ55xNfhTh3KstIiV41ZCJY7GztdnMQkSgHU8p2xua1yk2pkpW1SXAowu8i7BIrGYnh9iOqC1uwGXzosR6dsimK4CQVMquQEPHg32MuW_pO8RLclOkLttd7q7jNHcLL5FIn5swHIOaq8IGsW_1GGJ5r6pYAKYFFCSsOF3ZNG4cnTBWiv5IXCqKzQsfKj-Mypr1ubdiO7okAZrWkeLE1",
+        style: function () {
+            return { color: "#70ca49", weight: 2 };
+        }})
+    var CID = L.esri.featureLayer({url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/1?token=ruNMwx0LbONs71B8yWA0cOPc9Ipn8DKOCFactZQjyI0jDlJ55xNfhTh3KstIiV41ZCJY7GztdnMQkSgHU8p2xua1yk2pkpW1SXAowu8i7BIrGYnh9iOqC1uwGXzosR6dsimK4CQVMquQEPHg32MuW_pO8RLclOkLttd7q7jNHcLL5FIn5swHIOaq8IGsW_1GGJ5r6pYAKYFFCSsOF3ZNG4cnTBWiv5IXCqKzQsfKj-Mypr1ubdiO7okAZrWkeLE1",
+    style: function () {
+        return { color: "#70ca49", weight: 2 };
+    }})
+
+    var parks = L.esri.featureLayer({url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/2?token=ruNMwx0LbONs71B8yWA0cOPc9Ipn8DKOCFactZQjyI0jDlJ55xNfhTh3KstIiV41ZCJY7GztdnMQkSgHU8p2xua1yk2pkpW1SXAowu8i7BIrGYnh9iOqC1uwGXzosR6dsimK4CQVMquQEPHg32MuW_pO8RLclOkLttd7q7jNHcLL5FIn5swHIOaq8IGsW_1GGJ5r6pYAKYFFCSsOF3ZNG4cnTBWiv5IXCqKzQsfKj-Mypr1ubdiO7okAZrWkeLE1",
+    style: function () {
+        return { color: "#70ca49", weight: 2 };
+    }})
+
+    var SBD = L.esri.featureLayer({url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/3?token=ruNMwx0LbONs71B8yWA0cOPc9Ipn8DKOCFactZQjyI0jDlJ55xNfhTh3KstIiV41ZCJY7GztdnMQkSgHU8p2xua1yk2pkpW1SXAowu8i7BIrGYnh9iOqC1uwGXzosR6dsimK4CQVMquQEPHg32MuW_pO8RLclOkLttd7q7jNHcLL5FIn5swHIOaq8IGsW_1GGJ5r6pYAKYFFCSsOF3ZNG4cnTBWiv5IXCqKzQsfKj-Mypr1ubdiO7okAZrWkeLE1",
+    style: function () {
+        return { color: "#70ca49", weight: 2 };
+    }})
+    var overlayMaps = {
+    "Neighborhoods": neighborhoods,
+    "Community Improvement Districts": CID,
+    "Parks": parks,
+    "Special Business Districts": SBD
+};
+    L.control.layers(overlayMaps).addTo(map1);
+    L.control.layers(overlayMaps).addTo(map2);
+    L.control.layers(overlayMaps).addTo(map3);
+    </script>
+</body>
+</html>

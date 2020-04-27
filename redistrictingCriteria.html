@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Redistricting Criteria</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/style.css">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="generic.html">Ipsum veroeros</a></li>
+							<li><a href="generic.html">Tempus etiam</a></li>
+							<li><a href="generic.html">Consequat dolor</a></li>
+							<li><a href="elements.html">Elements</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Redistricting Criteria</h1>
+							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
+							<p><a href="https://www.stlouis-mo.gov/government/city-laws/ordinances/ordinance.cfm?ord=69185">Ordinance #69185</a> stipulates that the new ward boundaries "shall comprise as nearly as practicable, compact and contiguous territory within straight lines, and contain as nearly as may be the same number of inhabitants." In addition to these criteria, there are other criteria identified by Supreme Court case law, namely preserving communities of interest, preserving existing political and geographical boundaries,  and respect for minority representation. For more information, the Brennan Center for Justice's  <a href="https://www.brennancenter.org/sites/default/files/legacy/CGR%20Reprint%20Single%20Page.pdf">A Citizen's Guide to Redsitricting</a> is a useful resource. Below I have listed all of the criteria considered in my analysis along with tangible measures of them (if applicable). </p>
+
+							<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Criteria</th>
+											<th>Description</th>
+											<th>Measure</th>
+											<th>Image</th>
+											<th>Value Needed to Satisfy Criteria</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Equal population</td>
+											<td>Ward populations should be roughly equal in number.</td>
+											<td>Total population deviation between wards must not be greater than 10%. To check this, we can calculate the deviation for each ward and ensure that there is no difference in deviations between wards greater than 10%.</td>
+											<td>n/a</td>
+											<td>Total population deviation &lt 10%</td>
+										</tr>
+										<tr>
+											<td>Contiguity</td>
+											<td>Every part of the ward must be reachable from every other part without crossing the ward boundary.</td>
+											<td>This can be easily assessed visually.</td>
+											<td>In the following diagram, W3 represents a non-contiguous ward.<img class="diagram" src="images/contiguity.png" alt="contiguity"></td>
+											<td>All wards must be contiguous.</td>
+										</tr>
+										<tr>
+											<td>Compactness</td>
+											<td>Every ward should have a regular shape with constituents living relatively close to each other.</td>
+											<td>This can be measured using the  <a href="https://en.wikipedia.org/wiki/Polsby%E2%80%93Popper_test">Polsby-Popper test</a>. This is a mathematical measure of compactness. The value of this test will always fall between 0 and 1, where a score of 0 indicates a lack of compactness (a straight line) while a score of 1 indicates maximal compactness (a circle).</td>
+							
+											<td>In the following diagram, W1 represents a non-compact ward while W2 represents a relatively compact ward. <img class = "diagram" src="images/compactness.png" alt="compactness"></td>
+											<td>Polsby-Popper score &gt 0.3</td>
+										</tr>
+										<tr>
+											<td>Preservation of Minority Voting Power</td>
+											<td>Minority voting power should be preserved. This means that minority groups should have an effective opportunity to win a ward based on the region's total population.</td>
+											<td>St. Louis is 46.2% African American. Therefore, 46.2% of the wards (7 wards) should allow for African Americans to have an effective opportunity to elect a candidate of their choosing. An effective opportunity means having more than 50% minority population in a given ward. While St. Louis does have other minority populations, none have large enough of a population where they require a ward with an effective opportunity to elect a candidate of their choosing.</td>
+											<td>n/a</td>
+											<td>7 wards with &gt 50% African American population</td>
+										</tr>
+										<tr>
+											<td>Preservation of Communities of Interest and Political and Geographic Boundaries</td>
+											<td>Communities of interest and political and geographic boundaries should be preserved where possible. Wards should not split up such boundaries. Neighborhoods in St. Louis represent communities of interest. Political boundaries in St. Louis include Special Business Districts, Tax Increment Financing Districts, Transit Orientated Development Districts and Community Improvement Districts. Geographic boundaries include parks.</td>
+											<td>For a given community of interest, political or geographic boundary, we can calculate what percentage of it falls within each ward. We consider the largest of these percentages for each ward and take the average for all features. For the purposes of this project, we call this the "Cohesion Score". In summary, this score represents the percentage, on average, that each feature in a community of interest or political or geographic boundary, falls within the ward it is most within.</td>
+											<td>In the following diagram, feature "A" falls completely within ward 1, giving it a cohesion score of 100%. Feature "B" is evenly split between wards 3 and 4, giving it a cohesion score of 50%. Average cohesion score for both of these features is 75%. <img class = "diagram" src="images/cohesion.png" alt="cohesion"></td>
+											<td>Average Cohesion Score &gt 80%</td>
+										</tr>
+									</tbody>
+								</table>
+								<p></p>For each of the ward boundaries created by the  <a href="redistrictingMethods.html">redistricting methods</a> described in the next section, the above criteria will be used for evaluation. </p>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

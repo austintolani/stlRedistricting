@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Redistricting Methods</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="generic.html">Ipsum veroeros</a></li>
+							<li><a href="generic.html">Tempus etiam</a></li>
+							<li><a href="generic.html">Consequat dolor</a></li>
+							<li><a href="elements.html">Elements</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Redistricting Methods</h1>
+							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
+							<p>I used three different methods to generate new ward boundaries: </p>
+							<ul>
+								<li>Manual redistricting (drawing new ward boundaries by hand)</li>
+								<li>Use of  <a href="http://autoredistrict.org/">Auto-Redistrict</a>, a computer program that automatically create fair and compact electoral districts. </li>
+								<li>Use of <a href="https://www.jstatsoft.org/article/view/v042i04">BARD: Better Automated Redistricting </a>, an open source software package for general redistricting and redistricting analysis. </li>
+							</ul>
+							<p>For all of these methods, I used census block groups as the geographical unit of analysis and used the most recent (2018) American Community Survey estimates for demographic data. This page provides a general outline of the redistricting methods used, for more specifics on the workflow, see the  <a href="workflow.html">workflow section</a>.</p>
+							<strong>Manual Redistricting</strong>
+							<p>To draw the ward boundaries by hand, I used <a href="https://www.esri.com/en-us/arcgis/products/districting-for-arcgis/overview">Esri's Districting extension</a> for ArcMap/ArcCatalog. This useful extension allows you to draw boundaries while summarizing various statistics relevant to redistricting. When drawing the ward boundaries, I carefully examined demographic data and boundaries of interest to iteratively improve the boundaries until I reached a reasonable solution. </p>
+							<strong>Auto-Redistrict</strong>
+
+							<p>As mentioned, <a href="http://autoredistrict.org/">Auto-Redistrict</a> is a computer program that automatically creates fair and compact electoral district. It uses a heuristic search algorithm to evaluate potential solutions based on criteria like equal population, contiguity, compactness, minimal splitting and minimal racial gerrymandering. Once I imported the data for St. Louis and configured how the program prioritized different criteria, I was able to export a solution for St. Louis.</p>
+							<strong>BARD: Bettter Automated Redistricting</strong>
+							<p>BARD is a software package for general redistricting and redistricting analysis. It supports automated generation of redistricting plans by assigning different weights to various criteria. Once using this package in the way described in the <a href="workflow.html">workflow section</a> I was able to output a solution. </p>
+							<br>
+							<p>For the later two methods, I took the solutions and manually tweaked them. As a result, I ended up with 5 different solutions: the result from manual redistricting, from Auto-Redistrict, from Auto-Redistrict after manual tweaking, from BARD, and from BARD after manual tweaking. To view these results, see the  <a href="results.html">result section</a>. </p>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
