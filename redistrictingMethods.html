@@ -47,7 +47,7 @@
 						<div class="inner">
 							<h1>Redistricting Methods</h1>
 							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
-							<p>I used three different methods to generate new ward boundaries: </p>
+							<p>I experimented with three different methods to generate new ward boundaries: </p>
 							<ul>
 								<li>Manual redistricting (drawing new ward boundaries by hand)</li>
 								<li>Use of  <a href="http://autoredistrict.org/">Auto-Redistrict</a>, a computer program that automatically create fair and compact electoral districts. </li>
@@ -56,14 +56,21 @@
 							<p>For all of these methods, I used census block groups as the geographical unit of analysis and used the most recent (2018) American Community Survey estimates for demographic data. This page provides a general outline of the redistricting methods used, for more specifics on the workflow, see the  <a href="workflow.html">workflow section</a>.</p>
 							<strong>Manual Redistricting</strong>
 							<p>To draw the ward boundaries by hand, I used <a href="https://www.esri.com/en-us/arcgis/products/districting-for-arcgis/overview">Esri's Districting extension</a> for ArcMap/ArcCatalog. This useful extension allows you to draw boundaries while summarizing various statistics relevant to redistricting. When drawing the ward boundaries, I carefully examined demographic data and boundaries of interest to iteratively improve the boundaries until I reached a reasonable solution. </p>
+							<p>While manual districting gives the user the most control on the final outcome of all the methods I tried, it is extremely tedious and inefficient to create new ward boundaries from scratch. I found that this method was most useful when I could import an automatically generated plan and make some final adjustments.  </p>
 							<strong>Auto-Redistrict</strong>
 
-							<p>As mentioned, <a href="http://autoredistrict.org/">Auto-Redistrict</a> is a computer program that automatically creates fair and compact electoral district. It uses a heuristic search algorithm to evaluate potential solutions based on criteria like equal population, contiguity, compactness, minimal splitting and minimal racial gerrymandering. Once I imported the data for St. Louis and configured how the program prioritized different criteria, I was able to export a solution for St. Louis.</p>
-							<strong>BARD: Bettter Automated Redistricting</strong>
+							<p><a href="http://autoredistrict.org/">Auto-Redistrict</a> is a computer program that automatically creates fair and compact electoral district. It uses a heuristic search algorithm to evaluate potential solutions based on criteria like equal population, contiguity, compactness, minimal splitting and minimal racial gerrymandering. Once I imported the data for St. Louis and configured how the program prioritized different criteria, I was able to easily generate and export a solution for St. Louis.</p>
+							<p>Auto-redistrict was definitely the best tool for automatically generating ward boundaries, due to its easy to use graphical user interface. Making changes to prioritized criteria was very easy as it only involved adjusting some sliders in the program. While the program is easy to use, it does lack some of the customization found in BARD. </p>
+							<strong>BARD: Better Automated Redistricting</strong>
 							<p>BARD is a software package for general redistricting and redistricting analysis. It supports automated generation of redistricting plans by assigning different weights to various criteria. Once using this package in the way described in the <a href="workflow.html">workflow section</a> I was able to output a solution. </p>
+							<p>BARD is a software package that is installed and run using R, the statistical programming language. Therefore, use of this software requires decent proficiency in R and programming. Additionally, while BARD allows the user to customize almost every aspect of redistricting, such as methods used to generate initial plans, score functions and optimization algorithms, it requires a lot of experimenting with all of these customizations to create suitable plans.  </p>
 							<br>
-							<p>For the later two methods, I took the solutions and manually tweaked them. As a result, I ended up with 5 different solutions: the result from manual redistricting, from Auto-Redistrict, from Auto-Redistrict after manual tweaking, from BARD, and from BARD after manual tweaking. To view these results, see the  <a href="results.html">result section</a>. </p>
-						</div>
+							<strong>Method Used</strong>
+							<p>While all these methods have their advantages and disadvantages, I found that using Auto-Redistrict to generate initial plans and then manually adjusting these plans led to the best results. While the customization options of BARD were promising, Auto-Redistrict was much easier to use and produced better outputs. Manually adjusting the initial plans created by Auto-Redistrict allowed me to ensure that all my criteria were met and make any small changes if necessary.</p>
+							<p>
+								Using Auto-Redistrict combined with manual redistricting, I created 5 ward boundaries. The first four prioritized different criteria, namely equal population, compactness, neighborhood cohesion and preservation of minority voting power. The last ward boundary was a balance between all criteria. All of the ward boundaries generated meet the legal criteria. To view these results, see the  <a href="results.html">result section</a>. </p>
+							</div>
+							</p>
 					</div>
 
 				<!-- Footer -->

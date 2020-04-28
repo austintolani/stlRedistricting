@@ -58,8 +58,18 @@
 						<div class="inner">
 							<h1>Results</h1>
 							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
-							<p>This page shows the 5 ward boundaries generating using five different methods: manual redistricting, use of Auto-Redistrict, use of Auto-Redistrict and manual redistricting, use of BARD and use of BARD with manual redistricting. </p>
-							<strong>Prioritizing Equal Population</strong>
+							<p>This page shows the 5 ward boundaries generated. While all of these ward boundaries meet the criteria to be considered a suitable plan, they each prioritize different criteria. Click the buttons below to explore each ward boundary and compare results. </p>
+							<a class="button" id="wardButton1">Equal Population</a>
+							<a class="button" id="wardButton2">Compactness</a>
+							<a class="button" id="wardButton3">Neighborhood Cohesion</a>
+							<a class="button" id="wardButton4">Preservation of Minority Voting Power</a>
+							<a class="button" id="wardButton5">Balanced</a>
+							<br>
+							<br>
+							<br>
+							<div class="wardResult" id="wardResult1">
+							<h2>Prioritizing Equal Population</h2>
+							<p>The following ward boundary prioritized equal population between wards.</p>
 							<div id="map1"></div>
 							<div class="table-wrapper">
 								<table>
@@ -72,7 +82,7 @@
 									<tbody>
 										<tr>
 											<td>Equal Population</td>
-											<td>Equal population criteria satisfied with an overal range of 8.86%</td>
+											<td>Equal population criteria satisfied with an overall range of 2.64%</td>
 
 										</tr>
 										<tr>
@@ -82,95 +92,187 @@
 										</tr>
 										<tr>
 											<td>Compactness</td>
-											<td> Average Polsby-Popper test value is 0.39 (criteria satisfied)</td>
+											<td> Average Polsby-Popper test value is 0.49 (criteria satisfied)</td>
 											
 										</tr>
 										<tr>
 											<td>Preservation of Minority Voting Power</td>
-											<td>7 wards with &gt 50% African American population (satisfied)</td>
+											<td>6 wards with &gt 50% African American population (satisfied)</td>
 										</tr>
 										<tr>
-											<td>Preservation of Communities of Interest and Political and Geographic Boundaries/td>
-											<td>Average neighborhood cohesion percentage is 89.35%.<br>Average TIF district cohesion percentage is 99.03%.<br>Average park cohesion percentage is 99.01%</td>
+											<td>Preservation of Communities of Interest and Political and Geographic Boundaries</td>
+											<td>Average neighborhood splits is 0.24.<br>Average park splits is 0.03.</td>
 											
 										</tr>
 									</tbody>
 								</table>
-							<strong>Auto-Redistrict</strong>
-							<div id="map2"></div>
-							<table>
-								<thead>
-									<tr>
-										<th>Redistricting Criteria</th>
-										<th>Result</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Equal Population</td>
-										<td>Equal population criteria satisfied with an overal range of 3.71%</td>
+							</div>
+							</div>
+							<div class="wardResult" id="wardResult2">
+								<h2>Prioritizing Ward Compactness</h2>
+								<p>The following ward boundary prioritized the compactness of wards.</p>
+								<div id="map2"></div>
+								<div class="table-wrapper">
+									<table>
+										<thead>
+											<tr>
+												<th>Redistricting Criteria</th>
+												<th>Result</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>Equal Population</td>
+												<td>Equal population criteria satisfied with an overall range of 8.15%</td>
+	
+											</tr>
+											<tr>
+												<td>Contiguity</td>
+												<td>All wards are contiguous</td>
+												
+											</tr>
+											<tr>
+												<td>Compactness</td>
+												<td> Average Polsby-Popper test value is 0.54 (criteria satisfied)</td>
+												
+											</tr>
+											<tr>
+												<td>Preservation of Minority Voting Power</td>
+												<td>6 wards with &gt 50% African American population (satisfied)</td>
+											</tr>
+											<tr>
+												<td>Preservation of Communities of Interest and Political and Geographic Boundaries</td>
+												<td>Average neighborhood splits is 0.25.<br>Average park splits is 0.05.</td>
+												
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								</div>
+								<div class="wardResult" id="wardResult3">
+									<h2>Prioritizing Neighborhood Cohesion</h2>
+									<p>The following ward boundary prioritized neighborhood cohesion by minimizing the number of times neighborhoods were split by ward boundaries.</p>
+									<div id="map3"></div>
+									<div class="table-wrapper">
+										<table>
+											<thead>
+												<tr>
+													<th>Redistricting Criteria</th>
+													<th>Result</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Equal Population</td>
+													<td>Equal population criteria satisfied with an overall range of 9.03%</td>
+		
+												</tr>
+												<tr>
+													<td>Contiguity</td>
+													<td>All wards are contiguous</td>
+													
+												</tr>
+												<tr>
+													<td>Compactness</td>
+													<td> Average Polsby-Popper test value is 0.45 (criteria satisfied)</td>
+													
+												</tr>
+												<tr>
+													<td>Preservation of Minority Voting Power</td>
+													<td>6 wards with &gt 50% African American population (satisfied)</td>
+												</tr>
+												<tr>
+													<td>Preservation of Communities of Interest and Political and Geographic Boundaries</td>
+													<td>Average neighborhood splits is 0.13.<br>Average park splits is 0.06.</td>
+													
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									</div>
+									<div class="wardResult" id="wardResult4">
+										<h2>Prioritizing Preservation of Minority Voting Power</h2>
+										<p>The following ward boundary prioritized the preservation of minority voting power. </p>
+										<div id="map4"></div>
+										<div class="table-wrapper">
+											<table>
+												<thead>
+													<tr>
+														<th>Redistricting Criteria</th>
+														<th>Result</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Equal Population</td>
+														<td>Equal population criteria satisfied with an overall range of 9.97%</td>
+			
+													</tr>
+													<tr>
+														<td>Contiguity</td>
+														<td>All wards are contiguous</td>
+														
+													</tr>
+													<tr>
+														<td>Compactness</td>
+														<td> Average Polsby-Popper test value is 0.42 (criteria satisfied)</td>
+														
+													</tr>
+													<tr>
+														<td>Preservation of Minority Voting Power</td>
+														<td>7 wards with &gt 50% African American population (satisfied)</td>
+													</tr>
+													<tr>
+														<td>Preservation of Communities of Interest and Political and Geographic Boundaries</td>
+														<td>Average neighborhood splits is 0.26.<br>Average park splits is 0.04.</td>
+														
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										</div>
+										<div class="wardResult" id="wardResult5">
+											<h2>Prioritizing Balance Between All Criteria</h2>
+											<p>The following ward boundary prioritized a balance between all criteria</p>
+											<div id="map5"></div>
+											<div class="table-wrapper">
+												<table>
+													<thead>
+														<tr>
+															<th>Redistricting Criteria</th>
+															<th>Result</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>Equal Population</td>
+															<td>Equal population criteria satisfied with an overal range of 2.92%</td>
+				
+														</tr>
+														<tr>
+															<td>Contiguity</td>
+															<td>All wards are contiguous</td>
+															
+														</tr>
+														<tr>
+															<td>Compactness</td>
+															<td> Average Polsby-Popper test value is 0.51 (criteria satisfied)</td>
+															
+														</tr>
+														<tr>
+															<td>Preservation of Minority Voting Power</td>
+															<td>6 wards with &gt 50% African American population (satisfied)</td>
+														</tr>
+														<tr>
+															<td>Preservation of Communities of Interest and Political and Geographic Boundaries</td>
+															<td>Average neighborhood splits is 0.16.<br>Average park splits is 0.05.</td>
+															
+														</tr>
+													</tbody>
+												</table>
+											</div>
 
-									</tr>
-									<tr>
-										<td>Contiguity</td>
-										<td>Wards are NOT contiguous</td>
-										
-									</tr>
-									<tr>
-										<td>Compactness</td>
-										<td> Average Polsby-Popper test value is 0.36 (criteria satisfied)</td>
-										
-									</tr>
-									<tr>
-										<td>Preservation of Minority Voting Power</td>
-										<td>4 wards with &gt 50% African American population (NOT satisfied)</td>
-									</tr>
-									<tr>
-										<td>Preservation of Communities of Interest and Political and Geographic Boundaries/td>
-										<td>Average neighborhood cohesion percentage is 90.75%.<br>Average TIF district cohesion percentage is 99.25%.<br>Average park cohesion percentage is 99.09%.</td>
-										
-									</tr>
-								</tbody>
-							</table>
-							<strong>Auto-Redistrict and Manual Redistricting</strong>
-							<div id="map3"></div>
-							<table>
-								<thead>
-									<tr>
-										<th>Redistricting Criteria</th>
-										<th>Result</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Equal Population</td>
-										<td>Equal population criteria satisfied with an overal range of 9.97%</td>
-
-									</tr>
-									<tr>
-										<td>Contiguity</td>
-										<td>Wards are contiguous.</td>
-										
-									</tr>
-									<tr>
-										<td>Compactness</td>
-										<td> Average Polsby-Popper test value is 0.42 (criteria satisfied)</td>
-										
-									</tr>
-									<tr>
-										<td>Preservation of Minority Voting Power</td>
-										<td>7 wards with &gt 50% African American population ( satisfied)</td>
-									</tr>
-									<tr>
-										<td>Preservation of Communities of Interest and Political and Geographic Boundaries/td>
-										<td>Average neighborhood cohesion percentage is 89.92%.<br>Average TIF district cohesion percentage is 99.28%.<br>Average park cohesion percentage is 99.09%.</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-					<div id="map4"></div>
-					<div id="map5"></div>
+										</div>
 				<!-- Footer -->
 					<footer id="footer">
 						<div class="inner">

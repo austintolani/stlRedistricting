@@ -48,7 +48,7 @@
 						<div class="inner">
 							<h1>Redistricting Criteria</h1>
 							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
-							<p><a href="https://www.stlouis-mo.gov/government/city-laws/ordinances/ordinance.cfm?ord=69185">Ordinance #69185</a> stipulates that the new ward boundaries "shall comprise as nearly as practicable, compact and contiguous territory within straight lines, and contain as nearly as may be the same number of inhabitants." In addition to these criteria, there are other criteria identified by Supreme Court case law, namely preserving communities of interest, preserving existing political and geographical boundaries,  and respect for minority representation. For more information, the Brennan Center for Justice's  <a href="https://www.brennancenter.org/sites/default/files/legacy/CGR%20Reprint%20Single%20Page.pdf">A Citizen's Guide to Redsitricting</a> is a useful resource. Below I have listed all of the criteria considered in my analysis along with tangible measures of them (if applicable). </p>
+							<p><a href="https://www.stlouis-mo.gov/government/city-laws/ordinances/ordinance.cfm?ord=69185">Ordinance #69185</a> stipulates that the new ward boundaries "shall comprise as nearly as practicable, compact and contiguous territory within straight lines, and contain as nearly as may be the same number of inhabitants." In addition to these criteria, there are other criteria that should be considered, as identified by Supreme Court case law. Such criteria include the preservation communities of interest, preservation of existing political and geographical boundaries, and respect for minority representation. For more information, the Brennan Center for Justice's  <a href="https://www.brennancenter.org/sites/default/files/legacy/CGR%20Reprint%20Single%20Page.pdf">A Citizen's Guide to Redsitricting</a> is a useful resource. Below I have listed all of the criteria considered in my analysis, how such criteria were measured and the values needed to satisfy such criteria. </p>
 
 							<div class="table-wrapper">
 								<table>
@@ -86,17 +86,17 @@
 										</tr>
 										<tr>
 											<td>Preservation of Minority Voting Power</td>
-											<td>Minority voting power should be preserved. This means that minority groups should have an effective opportunity to win a ward based on the region's total population.</td>
-											<td>St. Louis is 46.2% African American. Therefore, 46.2% of the wards (7 wards) should allow for African Americans to have an effective opportunity to elect a candidate of their choosing. An effective opportunity means having more than 50% minority population in a given ward. While St. Louis does have other minority populations, none have large enough of a population where they require a ward with an effective opportunity to elect a candidate of their choosing.</td>
+											<td>Minority voting power should be preserved. This means that minority groups should have an effective opportunity to win a certain number of wards based on the region's total population.</td>
+											<td>St. Louis is 46.2% African American. Therefore, 46.2% of the wards (6-7 wards) should allow for African Americans to have an effective opportunity to elect a candidate of their choosing. An effective opportunity means having more than 50% minority population in a given ward. While St. Louis does have other minority populations, none have large enough of a population where they require a ward with an effective opportunity to elect a candidate of their choosing.</td>
 											<td>n/a</td>
-											<td>7 wards with &gt 50% African American population</td>
+											<td>6-7 wards with &gt 50% African American population</td>
 										</tr>
 										<tr>
 											<td>Preservation of Communities of Interest and Political and Geographic Boundaries</td>
 											<td>Communities of interest and political and geographic boundaries should be preserved where possible. Wards should not split up such boundaries. Neighborhoods in St. Louis represent communities of interest. Political boundaries in St. Louis include Special Business Districts, Tax Increment Financing Districts, Transit Orientated Development Districts and Community Improvement Districts. Geographic boundaries include parks.</td>
-											<td>For a given community of interest, political or geographic boundary, we can calculate what percentage of it falls within each ward. We consider the largest of these percentages for each ward and take the average for all features. For the purposes of this project, we call this the "Cohesion Score". In summary, this score represents the percentage, on average, that each feature in a community of interest or political or geographic boundary, falls within the ward it is most within.</td>
-											<td>In the following diagram, feature "A" falls completely within ward 1, giving it a cohesion score of 100%. Feature "B" is evenly split between wards 3 and 4, giving it a cohesion score of 50%. Average cohesion score for both of these features is 75%. <img class = "diagram" src="images/cohesion.png" alt="cohesion"></td>
-											<td>Average Cohesion Score &gt 80%</td>
+											<td>For a given community of interest, political or geographic boundary, we can calculate how many times it is split up by the ward boundaries. We can do this for all features and calculate the average number of splits. Ward boundaries should minimize the number of splits that occur for communities of interest and political and geographic boundaries. </td>
+											<td>In the following diagram, feature "A" falls completely within ward 1, giving it a split score of 0. Feature "B" is split once between wards 3 and 4, giving it a cohesion score of 1. The average split score for both of these features is 0.5. <img class = "diagram" src="images/cohesion.png" alt="cohesion"></td>
+											<td>Average split score &lt 1</td>
 										</tr>
 									</tbody>
 								</table>

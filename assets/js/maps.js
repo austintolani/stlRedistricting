@@ -134,7 +134,7 @@ function chart(d) {
 
     var pie = d3.pie() // start and end angles of the segments
         .value(function (d) { return d.count; }) // how to extract the numerical data from each entry in our dataset
-        .sort(null); // by default, data sorts in oescending value. this will mess with our animation so we set it to null
+        .sort(null); // by default, data sorts in descending value. this will mess with our animation so we set it to null
 
     // define tooltip
     var tooltip = div // select element in the DOM with id 'chart'
@@ -289,6 +289,86 @@ function nHoodName(d) {
 
     return attributes["NHD_NAME"];
 }
-wards.on('click', function (layer) {
-    console.log(layer.layer.feature.properties)
-})
+
+document.getElementById("wardResult1").style.display = "none";
+document.getElementById("wardResult2").style.display = "none";
+document.getElementById("wardResult3").style.display = "none";
+document.getElementById("wardResult4").style.display = "none";
+document.getElementById("wardResult5").style.display = "none";
+
+document.getElementById("wardButton1").onclick = function(){
+
+    if (this.className === "button"){
+        this.className = "button primary";
+    }
+    else{
+        this.className="button"
+    };
+    var x = document.getElementById("wardResult1");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }   
+}
+document.getElementById("wardButton2").onclick = function(){
+
+    if (this.className === "button"){
+        this.className = "button primary";
+    }
+    else{
+        this.className="button"
+    }
+    var x = document.getElementById("wardResult2")
+    if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }   
+}
+document.getElementById("wardButton3").onclick = function(){
+
+    if (this.className === "button"){
+        this.className = "button primary";
+    }
+    else{
+        this.className="button"
+    }
+    var x = document.getElementById("wardResult3")
+    if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }   
+}
+document.getElementById("wardButton4").onclick = function(){
+
+    if (this.className === "button"){
+        this.className = "button primary";
+    }
+    else{
+        this.className="button"
+    }
+    var x = document.getElementById("wardResult4")
+    if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }   
+}
+document.getElementById("wardButton5").onclick = function(){
+
+    if (this.className === "button"){
+        this.className = "button primary";
+    }
+    else{
+        this.className="button"
+    }
+    var x = document.getElementById("wardResult5")
+    if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }   
+}
+
