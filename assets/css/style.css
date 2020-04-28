@@ -5,7 +5,11 @@
 }
 
 
-#map1 { height: 700px ;width: 50%;margin: auto;}
+#map1 { height: 500px ;width: 75%;margin: auto;}
+#map2 { height: 700px ;width: 50%;margin: auto;}
+#map3 { height: 700px ;width: 50%;margin: auto;}
+#map4 { height: 700px ;width: 50%;margin: auto;}
+#map5 { height: 700px ;width: 50%;margin: auto;}
     
 body {
 font-family: 'Open Sans', sans-serif;
