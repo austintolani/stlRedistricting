@@ -2207,7 +2207,7 @@ input, select, textarea {
 		padding: 0;
 		min-height: 3.75em;
 	}
-
+/* 
 	input[type="checkbox"],
 	input[type="radio"] {
 		-moz-appearance: none;
@@ -2285,7 +2285,7 @@ input, select, textarea {
 
 	input[type="radio"] + label:before {
 		border-radius: 100%;
-	}
+	} */
 
 /* Box */
 
@@ -3327,3 +3327,5 @@ input, select, textarea {
 			}
 
 		}
+
+
