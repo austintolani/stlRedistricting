@@ -94,7 +94,7 @@ rect.disabled {
     var wards = L.esri.featureLayer({
     url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/Results/FeatureServer/2?token=55NDY2qN5ZFKu6vGFKQHarE01HhPj0Mk8xGT1KP-fnsfMis5y80tTDx6ZZKPouZPb_ouYVfupagcFGfKStXoSoQ4bwBp5_LNXEy8XWnXEj1ys5rE_kWO6hw1wW-17sTmRDsP8mbE_ZdrNSQ4Lv6fydhEu_eiDJ6vcKqC_Hpu-d2owvmP5lo14uFc4s7iocH1EKFufP_cEgZReubkrA09yijCDP13TRfInocx_AbryZahTAZa5RZgVzz3tBDTGkJz",
     style: function () {
-        return { color: "#70ca49", weight: 2 };
+        return { color: "#FF6978", weight: 2 };
     }
     }).addTo(map);
 
@@ -102,14 +102,14 @@ rect.disabled {
     var parks = L.esri.featureLayer({
     url: 'https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/2?token=vil6cozRflAZ5Y-fUCiJWU8MmSDSAg4OW1Q8h0n2onalimTYRLELia7tLUs_4-uOGP9BsJxaj52CjmhZBJnGyIZqqmCvyChCRULP-6_Z6GCjGDisg3jr_IOsA8NpdIUUfZMjmscC79ansqikxkKohXttyD_qzABfsEVJunPHaTT9--RaXl9RfoBv76JzmvE_tQ0d-h7pJNcEoKklgTBPeMwWicL2aLiaB82mG5fyRsgyQwHpGGrwqZccedjS11QS',
     style: function (feature) {
-      return { color: '#bada55', weight: 2 };
+      return {color: '#66A182', weight: 0 };
     }
   });
 
   var nHoods = L.esri.featureLayer({
     url: 'https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/0?token=vil6cozRflAZ5Y-fUCiJWU8MmSDSAg4OW1Q8h0n2onalimTYRLELia7tLUs_4-uOGP9BsJxaj52CjmhZBJnGyIZqqmCvyChCRULP-6_Z6GCjGDisg3jr_IOsA8NpdIUUfZMjmscC79ansqikxkKohXttyD_qzABfsEVJunPHaTT9--RaXl9RfoBv76JzmvE_tQ0d-h7pJNcEoKklgTBPeMwWicL2aLiaB82mG5fyRsgyQwHpGGrwqZccedjS11QS',
     style: function (feature) {
-      return { color: '#bada55', weight: 2 };
+      return { color: '#352D39', weight: 1 };
     }
   });
 
