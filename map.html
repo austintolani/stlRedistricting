@@ -49,7 +49,7 @@ rect.disabled {
 
 /* chart */
 .chart {
-  height: 500px;
+  height: 300px;
   margin: 0 auto;
   position: relative;
   display: block;
@@ -98,13 +98,35 @@ rect.disabled {
     }
     }).addTo(map);
 
-    wards.bindPopup(chart);
+
+    var parks = L.esri.featureLayer({
+    url: 'https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/2?token=vil6cozRflAZ5Y-fUCiJWU8MmSDSAg4OW1Q8h0n2onalimTYRLELia7tLUs_4-uOGP9BsJxaj52CjmhZBJnGyIZqqmCvyChCRULP-6_Z6GCjGDisg3jr_IOsA8NpdIUUfZMjmscC79ansqikxkKohXttyD_qzABfsEVJunPHaTT9--RaXl9RfoBv76JzmvE_tQ0d-h7pJNcEoKklgTBPeMwWicL2aLiaB82mG5fyRsgyQwHpGGrwqZccedjS11QS',
+    style: function (feature) {
+      return { color: '#bada55', weight: 2 };
+    }
+  });
+
+  var nHoods = L.esri.featureLayer({
+    url: 'https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/0?token=vil6cozRflAZ5Y-fUCiJWU8MmSDSAg4OW1Q8h0n2onalimTYRLELia7tLUs_4-uOGP9BsJxaj52CjmhZBJnGyIZqqmCvyChCRULP-6_Z6GCjGDisg3jr_IOsA8NpdIUUfZMjmscC79ansqikxkKohXttyD_qzABfsEVJunPHaTT9--RaXl9RfoBv76JzmvE_tQ0d-h7pJNcEoKklgTBPeMwWicL2aLiaB82mG5fyRsgyQwHpGGrwqZccedjS11QS',
+    style: function (feature) {
+      return { color: '#bada55', weight: 2 };
+    }
+  });
+
+    var overlayMaps = {
+      "Parks": parks,
+      "Neigborhoods": nHoods
+    };
+
+    L.control.layers(null,overlayMaps).addTo(map);
+
+    wards.bindPopup(chart,{minWidth:400});
 
     function chart(d){
         var feature = d.feature;
         var attributes = feature.properties;
 
-        var dataset = [{label:"White", count: attributes["White_alon"]},{label:"Black",count: attributes["Black_alon"]},{label:"Asian", count: attributes["Asian_alon"]},{label: "Two or More Races", count: attributes["TwoOrMore"]},{label: "Some Other Race", count: attributes["SomeOtherR"]},{label: "Native American or Alaska Native", count: attributes["Indian_Ala"]},{label: "Native Hawaiian or Other Pacific Islander", count: attributes["HawaiiPaci"]}];
+        var dataset = [{label:"White", count: attributes["White_alon"]},{label:"Black",count: attributes["Black_alon"]},{label:"Asian", count: attributes["Asian_alon"]},{label: "Two or More Races", count: attributes["TwoOrMore"]},{label: "Some Other Race", count: attributes["SomeOtherR"]},{label: "Native American or Alaska Native", count: attributes["Indian_Ala"]},{label: "Native Hawaiian or \n Other Pacific Islander", count: attributes["HawaiiPaci"]}];
 
 
 
@@ -124,11 +146,11 @@ var height = 100;
 var radius = Math.min(width, height) / 2;
 
 // legend dimensions
-var legendRectSize = 4; // defines the size of the colored squares in legend
-var legendSpacing = 2; // defines spacing between squares
+var legendRectSize = 5; // defines the size of the colored squares in legend
+var legendSpacing = 8; // defines spacing between squares
 
 // define color scale
-var color = d3.scaleOrdinal(d3.schemeCategory20b);
+var color = d3.scaleOrdinal(d3.schemeDark2);
 // more color scales: https://bl.ocks.org/pstuffa/3393ff2711a53975040077b7453781a9
 
 var svg = div // select element in the DOM with id 'chart'
@@ -217,7 +239,7 @@ var legend = svg.selectAll('.legend') // selecting elements with class 'legend'
   .attr('transform', function(d, i) {                   
     var height = legendRectSize + legendSpacing; // height of element is the height of the colored square plus the spacing      
     var offset =  height * color.domain().length / 2; // vertical offset of the entire legend = height of a single element & half the total number of elements  
-    var horz = 18 * legendRectSize; // the legend is shifted to the left to make room for the text
+    var horz = 15 * legendRectSize; // the legend is shifted to the left to make room for the text
     var vert = i * height - offset; // the top of the element is hifted up or down from the center using the offset defiend earlier and the index of the current element 'i'               
       return 'translate(' + horz + ',' + vert + ')'; //return translation       
    });
@@ -264,12 +286,41 @@ legend.append('rect') // append rectangle squares to legend
 // adding text to legend
 legend.append('text')                                    
   .attr('x', legendRectSize + legendSpacing)
-  .attr('y', legendRectSize - legendSpacing)
+  .attr('y', legendRectSize - legendSpacing + 10)
   .text(function(d) { return d; }); // return label
+
+
+
+  var totalPopText = div.append('p');
+  totalPopText.append('strong').text('Total Population: ');
+  totalPopText.append('text').text(`${attributes["totalPop"]}`);
+  
+  var votingPopText = div.append('p');
+  votingPopText.append('strong').text('Voting Age Population: ');
+  votingPopText.append('text').text(`${attributes["votingPop"]}`);
+
+  var compactnessText = div.append('p');
+  compactnessText.append('strong').text('Compactness Score (0-1): ');
+  compactnessText.append('text').text(`${attributes["ppScore"]}`);
         return div.node();
 
     }
 
+    parks.bindPopup(parkName);
+    nHoods.bindPopup(nHoodName);
+    function parkName(d){
+      var feature = d.feature;
+      var attributes = feature.properties;
+
+      return attributes["TEXT_"];
+    }
+
+    function nHoodName(d){
+      var feature = d.feature;
+      var attributes = feature.properties;
+
+      return attributes["NHD_NAME"];
+    }
   wards.on('click', function(layer){
   console.log(layer.layer.feature.properties)
 })
