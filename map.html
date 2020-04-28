@@ -17,7 +17,7 @@
     <title>Leaflet</title>
     <style>
     
-    #map { height: 1000px ;width: 1000px;margin: auto;}
+    #map { height: 700px ;width: 50%;margin: auto;}
     
     body {
   font-family: 'Open Sans', sans-serif;
@@ -37,7 +37,7 @@
 
 /* legend */
 .legend {
-  font-size: 10px;
+  font-size: 12px;
 }
 rect {
   cursor: pointer; 
@@ -49,11 +49,15 @@ rect.disabled {
 
 /* chart */
 .chart {
-  height: 100px;
+  height: 500px;
   margin: 0 auto;
   position: relative;
   display: block;
-  width: 300px;
+  width: 500px;
+}
+.chartTitle{
+  font-size: 120%;
+  text-align: center;
 }
 
 /* tooltip */
@@ -69,7 +73,7 @@ rect.disabled {
   text-align: center;
   top: 95px;
   width: 20px;
-  z-index: 10;
+  z-index: 100;
 }
 
 .footer {
@@ -106,9 +110,14 @@ rect.disabled {
 
         var div = d3.create("div").attr('class','chart');
 
+        var title = div.append("strong").attr('class','chartTitle');
+
+        title.text(`Statistics for Ward #${attributes["DIST_ID"]}`);
+
+
 
        // chart dimensions
-var width = 300;
+var width = 400;
 var height = 100;
 
 // a circle chart needs a radius
@@ -116,7 +125,7 @@ var radius = Math.min(width, height) / 2;
 
 // legend dimensions
 var legendRectSize = 4; // defines the size of the colored squares in legend
-var legendSpacing = 4; // defines spacing between squares
+var legendSpacing = 2; // defines spacing between squares
 
 // define color scale
 var color = d3.scaleOrdinal(d3.schemeCategory20b);
@@ -127,7 +136,7 @@ var svg = div // select element in the DOM with id 'chart'
   .attr('width', width) // set the width of the svg element we just added
   .attr('height', height) // set the height of the svg element we just added
   .append('g') // append 'g' element to the svg element
-  .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')'); // our reference is now to the 'g' element. centerting the 'g' element to the svg element
+  .attr('transform', 'translate(' + (width/7) + ',' + (height / 2) + ')'); // our reference is now to the 'g' element. centerting the 'g' element to the svg element
 
 var arc = d3.arc()
   .innerRadius(0) // none for pie chart
