@@ -1,3 +1,5 @@
+// Create map variables and import feature services
+
 var map1 = L.map('map1').setView([38.633649, -90.243655], 11);
 L.esri.basemapLayer("Gray").addTo(map1);
 
@@ -59,7 +61,7 @@ wards5.addTo(map5);
 
 
 
-
+// Import other layers and add layer controls
 var parks = L.esri.featureLayer({
     url: 'https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/2?token=vil6cozRflAZ5Y-fUCiJWU8MmSDSAg4OW1Q8h0n2onalimTYRLELia7tLUs_4-uOGP9BsJxaj52CjmhZBJnGyIZqqmCvyChCRULP-6_Z6GCjGDisg3jr_IOsA8NpdIUUfZMjmscC79ansqikxkKohXttyD_qzABfsEVJunPHaTT9--RaXl9RfoBv76JzmvE_tQ0d-h7pJNcEoKklgTBPeMwWicL2aLiaB82mG5fyRsgyQwHpGGrwqZccedjS11QS',
     style: function (feature) {
@@ -90,21 +92,17 @@ wards3.bindPopup(chart, { minWidth: 400 });
 wards4.bindPopup(chart, { minWidth: 400 });
 wards5.bindPopup(chart, { minWidth: 400 });
 
+// Function that generate a charts based on an input ward
 function chart(d) {
+    // Get feature data
     var feature = d.feature;
     var attributes = feature.properties;
-
     var dataset = [{ label: "White", count: attributes["White_alon"] }, { label: "Black", count: attributes["Black_alon"] }, { label: "Asian", count: attributes["Asian_alon"] }, { label: "Two or More Races", count: attributes["TwoOrMore"] }, { label: "Some Other Race", count: attributes["SomeOtherR"] }, { label: "Native American or Alaska Native", count: attributes["Indian_Ala"] }, { label: "Native Hawaiian or \n Other Pacific Islander", count: attributes["HawaiiPaci"] }];
 
-
-
+    // Create main div and append title
     var div = d3.create("div").attr('class', 'chart');
-
     var title = div.append("strong").attr('class', 'chartTitle');
-
     title.text(`Statistics for Ward #${attributes["DIST_ID"]}`);
-
-
 
     // chart dimensions
     var width = 400;
@@ -149,25 +147,10 @@ function chart(d) {
 
     tooltip.append('div') // add divs to the tooltip defined above  
         .attr('class', 'percent'); // add class 'percent' on the selection
-
-    // Confused? see below:
-
-    // <div id="chart">
-    //   <div class="tooltip">
-    //     <div class="label">
-    //     </div>
-    //     <div class="count">
-    //     </div>
-    //     <div class="percent">
-    //     </div>
-    //   </div>
-    // </div>
-
     dataset.forEach(function (d) {
         d.count = +d.count; // calculate count as we iterate through the data
         d.enabled = true; // add enabled property to track which entries are checked
     });
-
     // creating the chart
     var path = svg.selectAll('path') // select all path elements inside the svg. specifically the 'g' element. they don't exist yet but they will be created below
         .data(pie(dataset)) //associate dataset wit he path elements we're about to create. must pass through the pie function. it magically knows how to extract values and bakes it into the pie
@@ -232,7 +215,6 @@ function chart(d) {
                 rect.attr('class', 'disabled'); // otherwise flag the square disabled
                 enabled = false; // set enabled to false
             }
-
             pie.value(function (d) {
                 if (d.label === label) d.enabled = enabled; // if entry label matches legend label
                 return (d.enabled) ? d.count : 0; // update enabled property and return count or 0 based on the entry's status
@@ -257,8 +239,7 @@ function chart(d) {
         .attr('y', legendRectSize - legendSpacing + 10)
         .text(function (d) { return d; }); // return label
 
-
-
+    // Append other attributes below chart
     var totalPopText = div.append('p');
     totalPopText.append('strong').text('Total Population: ');
     totalPopText.append('text').text(`${attributes["totalPop"]}`);
@@ -274,6 +255,7 @@ function chart(d) {
 
 }
 
+// Configure pop ups for other layers
 parks.bindPopup(parkName);
 nHoods.bindPopup(nHoodName);
 function parkName(d) {
@@ -290,85 +272,87 @@ function nHoodName(d) {
     return attributes["NHD_NAME"];
 }
 
+
+// Logic for buttons to hide/show maps 
 document.getElementById("wardResult1").style.display = "none";
 document.getElementById("wardResult2").style.display = "none";
 document.getElementById("wardResult3").style.display = "none";
 document.getElementById("wardResult4").style.display = "none";
 document.getElementById("wardResult5").style.display = "none";
 
-document.getElementById("wardButton1").onclick = function(){
+document.getElementById("wardButton1").onclick = function () {
 
-    if (this.className === "button"){
+    if (this.className === "button") {
         this.className = "button primary";
     }
-    else{
-        this.className="button"
+    else {
+        this.className = "button"
     };
     var x = document.getElementById("wardResult1");
     if (x.style.display === "none") {
         x.style.display = "block";
-      } else {
+    } else {
         x.style.display = "none";
-      }   
+    }
 }
-document.getElementById("wardButton2").onclick = function(){
+document.getElementById("wardButton2").onclick = function () {
 
-    if (this.className === "button"){
+    if (this.className === "button") {
         this.className = "button primary";
     }
-    else{
-        this.className="button"
+    else {
+        this.className = "button"
     }
     var x = document.getElementById("wardResult2")
     if (x.style.display === "none") {
         x.style.display = "block";
-      } else {
+    } else {
         x.style.display = "none";
-      }   
+    }
 }
-document.getElementById("wardButton3").onclick = function(){
+document.getElementById("wardButton3").onclick = function () {
 
-    if (this.className === "button"){
+    if (this.className === "button") {
         this.className = "button primary";
     }
-    else{
-        this.className="button"
+    else {
+        this.className = "button"
     }
     var x = document.getElementById("wardResult3")
     if (x.style.display === "none") {
         x.style.display = "block";
-      } else {
+    } else {
         x.style.display = "none";
-      }   
+    }
 }
-document.getElementById("wardButton4").onclick = function(){
+document.getElementById("wardButton4").onclick = function () {
 
-    if (this.className === "button"){
+    if (this.className === "button") {
         this.className = "button primary";
     }
-    else{
-        this.className="button"
+    else {
+        this.className = "button"
     }
     var x = document.getElementById("wardResult4")
     if (x.style.display === "none") {
         x.style.display = "block";
-      } else {
+    } else {
         x.style.display = "none";
-      }   
+    }
 }
-document.getElementById("wardButton5").onclick = function(){
+document.getElementById("wardButton5").onclick = function () {
 
-    if (this.className === "button"){
+    if (this.className === "button") {
         this.className = "button primary";
     }
-    else{
-        this.className="button"
+    else {
+        this.className = "button"
     }
     var x = document.getElementById("wardResult5")
     if (x.style.display === "none") {
         x.style.display = "block";
-      } else {
+    } else {
         x.style.display = "none";
-      }   
+    }
 }
 
