@@ -20,11 +20,6 @@
 					<header id="header">
 						<div class="inner">
 
-							<!-- Logo -->
-								<a href="index.html" class="logo">
-									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Phantom</span>
-								</a>
-
 							<!-- Nav -->
 								<nav>
 									<ul>
@@ -50,12 +45,34 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<h1>Generic Page</h1>
-							<span class="image main"><img src="images/pic13.jpg" alt="" /></span>
-							<strong>This is where my paper will go. </strong>
-							<p>Donec eget ex magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fergiat. Pellentesque in mi eu massa lacinia malesuada et a elit. Donec urna ex, lacinia in purus ac, pretium pulvinar mauris. Curabitur sapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique.</p>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel venenatis mauris vehicula hendrerit.</p>
-							<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+							<h1>Workflow</h1>
+							<h2>Resources</h2>
+							<ul>
+								<li>I have a created a <a href="https://github.com/austintolani/stlRedistricting">public Github repository with all code used in this project</a></li>
+								<li>Read my paper on this project. </li>
+							</ul>
+							<h2>Data Sources</h2>
+							<p>Various data sources were used in this project. For the redistricting analysis, the smallest unit of analysis used was census block groups. Census block groups for the City of St. Louis were downloaded from the <a href="https://www.census.gov/en.html">U.S. Census Bureau’s website</a> . <a href="https://www.census.gov/programs-surveys/acs">The American Community Survey’s</a>  2018 5-year estimates were used to get the most up to date population and racial data for the census block groups. Additionally, boundaries representing various political and geographic units in St. Louis, such as neighborhoods and parks, were downloaded from the City of St. Louis’s Open Data Portal. </p>
+							<h2>Use of ESRI's Districting Extension</h2>
+							<p>I used ESRI's Districting extension extensively in this project to both manually create ward boundaries as well as to tweak automatically generated ones. I took the following steps to use this extension:</p>
+							<ul>
+								<li>Installed the extension from <a href="https://www.esri.com/en-us/arcgis/products/districting-for-arcgis/overview"> ESRI's website</a>.</li>
+								<li>Created a new plan, imported the block group shapefile, set the number of wards (14) and assigned the relevant demographic variables.</li>
+								<li>To import, I created a text field containing the IDs of the block groups and their assigned ward, then used the import plan function. </li>
+								<li>To export, I simply exported the ward layer as a shapefile.</li>
+							</ul>
+							<h2>Use of Auto-Redistrict</h2>
+							<p>To use Auto-Redistrict, I downloaded the executable JAR file from <a href="http://autoredistrict.org/">autoredistrict.org</a> and installed it on my computer. Once it is installed, importing a shapefile, running the algorithm and exporting the results is relatively straightforward. One thing to note, you must set the District Column to "AR_RESULT" in order to export. </p> 
+							<h2>Use of BARD</h2>
+							<p>Micah Altman and Michael P. McDonald's paper on Better Automated Redistricting is extremely useful in understanding the software package. Additionally the documentation that comes with the package is also informative. A couple notes on using/installing BARD:</p>
+							<ul>
+								<li>In order to install BARD on windows, you must first install <a href="https://cran.r-project.org/bin/windows/Rtools/">Rtools</a>.</li>
+								<li>When importing shapefiles into BARD, a .GAL file is required, along with the shapefile. This file represents the contiguity of features. The .GAL file is a text file that contains, for each observation, the number of neighbors and their identifiers. This file format is not found in many GIS software, including ArcMap, so I used a free and open source software tool called GeoDa to create this file. <a href="https://geodacenter.github.io/workbook/4a_contig_weights/lab4a.html#gal-weights-file">Click here</a> to learn more about this process.  </li>
+							</ul>
+							<p>To view the R code I used to generate ward boundaries, <a href="https://github.com/austintolani/stlRedistricting/blob/master/generateWards.R">click here</a>.</p>
+
+							<h2>Evaluating Redistricting Criteria</h2>
+							<p>In order to actually calculate the redistricting criteria for a generated ward boundary, I created a python script and used ArcPy, a Python package, to perform the calculations described by each criteria and output the results. This script allowed me to easily evaluate whether a set of ward boundaries met the criteria described above. To view this script, <a href="https://github.com/austintolani/stlRedistricting/blob/master/Evaluator.py">click here.</a> </p>
 						</div>
 					</div>
 
