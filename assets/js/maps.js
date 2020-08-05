@@ -16,21 +16,21 @@ var map5 = L.map('map5').setView([38.633649, -90.243655], 11);
 L.esri.basemapLayer("Gray").addTo(map5);
 
 var wards1 = L.esri.featureLayer({
-    url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/redistrictingResults/FeatureServer/3?token=9mtedQPtAC7Ippp3T8rdiMsiGcUYAYT4lin5pxsjpROCFZ8T_VFAiDk6ZE8IF3avOa24mssvDvJyi6KCuJ5j_9auPIZrpCan5H5MM3f5sg-mTlL9CBccv0Ce3GkTA3roR_fZlGJGp-vlp0c6PreiWL4aYgHfxUcOH5XFqo98Z61dGfghHmvuRvBSBnCLE5isxxNxHH7Ei0ocd4TyZsIEksjy-BQZ56OkhCI2Bhdy4zwnx2_njuJRvPbVBLh1400D",
+    url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/redistrictingResults/FeatureServer/3",
     style: function () {
         return { color: "#FF6978", weight: 2 };
     }
 });
 
 var wards2 = L.esri.featureLayer({
-    url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/redistrictingResults/FeatureServer/2?token=9mtedQPtAC7Ippp3T8rdiMsiGcUYAYT4lin5pxsjpROCFZ8T_VFAiDk6ZE8IF3avOa24mssvDvJyi6KCuJ5j_9auPIZrpCan5H5MM3f5sg-mTlL9CBccv0Ce3GkTA3roR_fZlGJGp-vlp0c6PreiWL4aYgHfxUcOH5XFqo98Z61dGfghHmvuRvBSBnCLE5isxxNxHH7Ei0ocd4TyZsIEksjy-BQZ56OkhCI2Bhdy4zwnx2_njuJRvPbVBLh1400D",
+    url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/redistrictingResults/FeatureServer/2",
     style: function () {
         return { color: "#6D435A", weight: 2 };
     }
 });
 
 var wards3 = L.esri.featureLayer({
-    url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/redistrictingResults/FeatureServer/1?token=9mtedQPtAC7Ippp3T8rdiMsiGcUYAYT4lin5pxsjpROCFZ8T_VFAiDk6ZE8IF3avOa24mssvDvJyi6KCuJ5j_9auPIZrpCan5H5MM3f5sg-mTlL9CBccv0Ce3GkTA3roR_fZlGJGp-vlp0c6PreiWL4aYgHfxUcOH5XFqo98Z61dGfghHmvuRvBSBnCLE5isxxNxHH7Ei0ocd4TyZsIEksjy-BQZ56OkhCI2Bhdy4zwnx2_njuJRvPbVBLh1400D",
+    url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/redistrictingResults/FeatureServer/1",
     style: function () {
         return { color: "#EF6351", weight: 2 };
     }
@@ -38,14 +38,14 @@ var wards3 = L.esri.featureLayer({
 
 
 var wards4 = L.esri.featureLayer({
-    url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/redistrictingResults/FeatureServer/4?token=9mtedQPtAC7Ippp3T8rdiMsiGcUYAYT4lin5pxsjpROCFZ8T_VFAiDk6ZE8IF3avOa24mssvDvJyi6KCuJ5j_9auPIZrpCan5H5MM3f5sg-mTlL9CBccv0Ce3GkTA3roR_fZlGJGp-vlp0c6PreiWL4aYgHfxUcOH5XFqo98Z61dGfghHmvuRvBSBnCLE5isxxNxHH7Ei0ocd4TyZsIEksjy-BQZ56OkhCI2Bhdy4zwnx2_njuJRvPbVBLh1400D",
+    url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/redistrictingResults/FeatureServer/4",
     style: function () {
         return { color: "#38618C", weight: 2 };
     }
 });
 
 var wards5 = L.esri.featureLayer({
-    url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/redistrictingResults/FeatureServer/0?token=9mtedQPtAC7Ippp3T8rdiMsiGcUYAYT4lin5pxsjpROCFZ8T_VFAiDk6ZE8IF3avOa24mssvDvJyi6KCuJ5j_9auPIZrpCan5H5MM3f5sg-mTlL9CBccv0Ce3GkTA3roR_fZlGJGp-vlp0c6PreiWL4aYgHfxUcOH5XFqo98Z61dGfghHmvuRvBSBnCLE5isxxNxHH7Ei0ocd4TyZsIEksjy-BQZ56OkhCI2Bhdy4zwnx2_njuJRvPbVBLh1400D",
+    url: "https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/redistrictingResults/FeatureServer/0",
     style: function () {
         return { color: "#424C55", weight: 2 };
     }
@@ -63,14 +63,14 @@ wards5.addTo(map5);
 
 // Import other layers and add layer controls
 var parks = L.esri.featureLayer({
-    url: 'https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/2?token=vil6cozRflAZ5Y-fUCiJWU8MmSDSAg4OW1Q8h0n2onalimTYRLELia7tLUs_4-uOGP9BsJxaj52CjmhZBJnGyIZqqmCvyChCRULP-6_Z6GCjGDisg3jr_IOsA8NpdIUUfZMjmscC79ansqikxkKohXttyD_qzABfsEVJunPHaTT9--RaXl9RfoBv76JzmvE_tQ0d-h7pJNcEoKklgTBPeMwWicL2aLiaB82mG5fyRsgyQwHpGGrwqZccedjS11QS',
+    url: 'https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/2',
     style: function (feature) {
         return { color: '#66A182', weight: 0 };
     }
 });
 
 var nHoods = L.esri.featureLayer({
-    url: 'https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/0?token=vil6cozRflAZ5Y-fUCiJWU8MmSDSAg4OW1Q8h0n2onalimTYRLELia7tLUs_4-uOGP9BsJxaj52CjmhZBJnGyIZqqmCvyChCRULP-6_Z6GCjGDisg3jr_IOsA8NpdIUUfZMjmscC79ansqikxkKohXttyD_qzABfsEVJunPHaTT9--RaXl9RfoBv76JzmvE_tQ0d-h7pJNcEoKklgTBPeMwWicL2aLiaB82mG5fyRsgyQwHpGGrwqZccedjS11QS',
+    url: 'https://services2.arcgis.com/yL7v93RXrxlqkeDx/ArcGIS/rest/services/cityBoundaries/FeatureServer/0',
     style: function (feature) {
         return { color: '#352D39', weight: 1 };
     }
