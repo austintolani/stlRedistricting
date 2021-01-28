@@ -4,7 +4,7 @@ This repository contains files relevant to a project that explored redistricting
 
 ## Website
 
-Most of the files in this repository are files used to generate a website that showcases the project. To view this website (hosted on Github), click HERE. 
+Most of the files in this repository are files used to generate a website that showcases the project. To view this website (hosted on Github), click [HERE](https://austintolani.github.io/stlRedistricting/). 
 
 All of the JavaScript used to generate the web maps and page logic found in `results.html` can be found at `assets/js/maps.js`. 
 
